@@ -22,6 +22,7 @@ public class Main {
 		gamePanel.generateWorld();
 		gamePanel.setupGame();
 		gamePanel.startGameThread();
+		System.out.println("Git test");
 	}
 
 }
