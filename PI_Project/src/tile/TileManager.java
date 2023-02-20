@@ -25,7 +25,8 @@ public class TileManager {
 
 		getTileImage();
 		//		loadMap("/maps/world01.txt");
-		loadMap("/maps/test11.txt");
+//		loadMap("/maps/test11.txt");
+		loadMap("/maps/testnovo.txt");
 
 		//		newRoad(8, 2);
 		//		newRoad(11, 4);
