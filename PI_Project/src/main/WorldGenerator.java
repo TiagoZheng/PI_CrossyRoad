@@ -62,9 +62,9 @@ public class WorldGenerator {
 	public void generateWorld() {
 
 		try {
-
-			BufferedWriter writer = new BufferedWriter(new FileWriter("testnovo.txt"));
-
+		
+			BufferedWriter writer = new BufferedWriter(new FileWriter("res/maps/testnovo4.txt"));
+			
 			String str = "";
 
 			for (int x = 0; x < mapGen.length; x++) {

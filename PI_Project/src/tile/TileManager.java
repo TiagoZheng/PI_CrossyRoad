@@ -2,6 +2,7 @@ package tile;
 
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -26,7 +27,7 @@ public class TileManager {
 		getTileImage();
 		//		loadMap("/maps/world01.txt");
 //		loadMap("/maps/test11.txt");
-		loadMap("/maps/testnovo.txt");
+		loadMap("res/maps/testnovo4.txt");
 
 		//		newRoad(8, 2);
 		//		newRoad(11, 4);
@@ -66,12 +67,17 @@ public class TileManager {
 	}
 
 	public void loadMap(String filePath) {
+		
+		FileReader fr = null;
+		BufferedReader br = null;
 
 		try {
 
-			InputStream is = getClass().getResourceAsStream(filePath);
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
-			System.out.println(is);
+//			InputStream is = getClass().getResourceAsStream(filePath);
+			fr = new FileReader(filePath);
+//			System.out.println(filePath);
+			br = new BufferedReader(fr);
+			
 			int col = 0;
 			int row = 0;
 
@@ -93,10 +99,18 @@ public class TileManager {
 					row++;
 				}
 			}
-			br.close();
 
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (br != null)
+					br.close();
+				if (fr != null)
+					fr.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 
