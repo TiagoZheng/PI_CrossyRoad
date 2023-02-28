@@ -97,13 +97,15 @@ public class Player extends Entity{
 					break;
 				
 				case "left": 
-					if(worldX > 0)
+					if(worldX > 0) {
 						worldX -= speed;
+					}
 					break;
 					
 				case "right":
-					if(worldX < gp.worldWidth - 2*gp.tileSize) //TODO
+					if(worldX < gp.worldWidth - (gp.tileSize + 1*gp.tileSize)) { //TODO
 						worldX += speed;
+					}
 					break;
 
 				}

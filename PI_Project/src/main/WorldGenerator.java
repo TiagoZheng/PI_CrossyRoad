@@ -9,48 +9,32 @@ import java.util.Random;
 public class WorldGenerator {
 
 	GamePanel gp;
-	int[][] mapGen = new int[30][30];
+	int[][] mapGen;
 
 	public WorldGenerator(GamePanel gp) {
+		mapGen = new int[gp.maxWorldRow][gp.maxWorldCol];
 		this.gp = gp;
 	}
-	
+
 	public int[][] generateArrays() {
 
-		//		int column;
-		//		for (int row = 0; row < 30; row++) {
-		//			for (column = 0; column < 30; column++) {
-		//				mapGen[row][column] = (int) (Math.random() * 6);
-		//				System.out.print(mapGen[row][column] + "\t");
-		//			}
-		//			System.out.println("");
-		//		}
-		//		return mapGen;
-
-		int column = 0;
-		for (int row = 0; row < 30; row++) {
-			
+		for (int col = 0; col < gp.maxWorldCol; col++) {
 			int randomNumber = (int) (Math.random() * 2);
-			mapGen[row][column] = randomNumber;	
-			
-			for (int x = 0; x < 30; x++) {
-				mapGen[x][column] =randomNumber;
-				
+			mapGen[0][col] = randomNumber;	
+
+			//row incrementa col fica igual
+			/*
+			 * 		col0		col1	 	col2
+			 * row0 [0,0]		[0,1]		[0,2]
+			 * row1 [1,0]		[1,1]		[1,2]
+			 * row2 [2,0]		[2,1]		[2,2]
+			 */
+
+			for (int row = 0; row < gp.maxWorldRow; row++) {
+				mapGen[row][col] =randomNumber;
+
 			}
-			column++;
 		}
-//		int count=0;
-//		int[][] oi = new int[10][10];
-//		for (int x = 0; x <10; x++) {
-//			for (int y = 0;y <10;y++) {
-//				oi[y][x]=count;
-//				System.out.println(Arrays.toString(oi[x]));
-//				count++;
-//			}
-//			
-//		}
-		
-//		System.out.println("");
 
 		return mapGen;
 
@@ -59,32 +43,38 @@ public class WorldGenerator {
 	public void generateWorld() {
 
 		try {
-		
 			BufferedWriter writer = new BufferedWriter(new FileWriter(gp.path));
 			String str = "";
 
-			for (int x = 0; x < mapGen.length; x++) {
-				
+			for (int x = 0; x < gp.maxWorldCol; x++) {
+				System.out.println("this is x: " + x);
 				// if column is grass 
 				if(mapGen[0][x] == 0) {
-					
+
 					Random r = new Random();
-					
+
+					System.out.println("true" + x);
 					//number of trees to add in each column
-					int numTrees = r.nextInt( gp.maxWorldRow/2 );
-					
+					int r1 = r.nextInt(gp.maxWorldRow);
+					System.out.println("r1 number of trees : " + r1);
+					int numTrees = r1;
+
 					while(numTrees > 0) {
 						//adds a tree in random height position
-						mapGen[r.nextInt(gp.maxWorldRow)][x] = 6;
+						int r2 = r.nextInt(gp.maxWorldRow);
+						System.out.println("r2 where: "  + r2);
+						mapGen[r2][x] = 6;
 						numTrees--;
 					}
-				} else { // column is a road
-					
-				}
 
+				} else { // column is a road
+					System.out.println("this is road");
+				}
+			}
+			for (int x = 0; x < gp.maxWorldRow; x++) {
 				str = (Arrays.toString(mapGen[x]) + "\n").replaceAll("\\[", "").replaceAll("\\]", "");
 				writer.write(str);
-				
+
 			}
 			writer.close();
 
