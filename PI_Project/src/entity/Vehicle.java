@@ -39,21 +39,21 @@ public class Vehicle extends Entity{
 	
 	public void update() {
 		
-//		if(direction == "up") {
-//			worldY -= speed;
-//			if(worldY < -60) {
-//				worldY = -60;
-//				worldX -= 50;
-//				direction = "down";
-//			}
-//		} else if(direction == "down") {
-//			worldY += speed;
-//			if(worldY > gp.screenHeight) {
-//				worldY = gp.screenHeight + 20;
-//				worldX += 50;
-//				direction = "up";
-//			}
-//		}
+		if(direction == "up") {
+			worldY -= speed;
+			if(worldY < -60) {
+				worldY = -60;
+				worldX -= 50;
+				direction = "down";
+			}
+		} else if(direction == "down") {
+			worldY += speed;
+			if(worldY > gp.screenHeight) {
+				worldY = gp.screenHeight + 20;
+				worldX += 50;
+				direction = "up";
+			}
+		}
 	}
 	
 	public void setX(int x) {
@@ -80,12 +80,6 @@ public class Vehicle extends Entity{
 		
 		g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
 	}
-
-	
-//	Fazer uma classe Road(int lanes) para criar uma faixa de rodagem com n vias de trânsito?
-//	Cada mapa/nível tem várias Road intercaladas por terrenos com árvores e pedras
-//		como obstáculos(criar classe para os terrenos?)
-//	O nível mais difícil podia ser só uma Road (sem terrenos pelo meio)
 	
 	
 }

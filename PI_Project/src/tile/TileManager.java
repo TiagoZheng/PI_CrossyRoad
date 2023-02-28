@@ -4,8 +4,6 @@ import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
 
@@ -25,12 +23,8 @@ public class TileManager {
 		mapTileNum = new int [gp.maxWorldCol][gp.maxWorldRow];
 
 		getTileImage();
-		//		loadMap("/maps/world01.txt");
-//		loadMap("/maps/test11.txt");
-		loadMap("res/maps/testnovo4.txt");
-
-		//		newRoad(8, 2);
-		//		newRoad(11, 4);
+//		loadMap("res/maps/testnovo4.txt");
+		
 	}
 
 	public void getTileImage() {
@@ -40,8 +34,11 @@ public class TileManager {
 			tile[0] = new Tile();
 			tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass.png"));
 
+//			tile[1] = new Tile();
+//			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/road2.png"));
+			
 			tile[1] = new Tile();
-			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/road2.png"));
+			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/lane.png"));
 
 			tile[2] = new Tile();
 			tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/firstLane.png"));
@@ -73,9 +70,7 @@ public class TileManager {
 
 		try {
 
-//			InputStream is = getClass().getResourceAsStream(filePath);
 			fr = new FileReader(filePath);
-//			System.out.println(filePath);
 			br = new BufferedReader(fr);
 			
 			int col = 0;

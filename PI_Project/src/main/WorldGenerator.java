@@ -1,13 +1,10 @@
 package main;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.Arrays;
+import java.util.Random;
 
 public class WorldGenerator {
 
@@ -17,7 +14,7 @@ public class WorldGenerator {
 	public WorldGenerator(GamePanel gp) {
 		this.gp = gp;
 	}
-
+	
 	public int[][] generateArrays() {
 
 		//		int column;
@@ -63,17 +60,31 @@ public class WorldGenerator {
 
 		try {
 		
-			BufferedWriter writer = new BufferedWriter(new FileWriter("res/maps/testnovo4.txt"));
-			
+			BufferedWriter writer = new BufferedWriter(new FileWriter(gp.path));
 			String str = "";
 
 			for (int x = 0; x < mapGen.length; x++) {
+				
+				// if column is grass 
+				if(mapGen[0][x] == 0) {
+					
+					Random r = new Random();
+					
+					//number of trees to add in each column
+					int numTrees = r.nextInt( gp.maxWorldRow/2 );
+					
+					while(numTrees > 0) {
+						//adds a tree in random height position
+						mapGen[r.nextInt(gp.maxWorldRow)][x] = 6;
+						numTrees--;
+					}
+				} else { // column is a road
+					
+				}
 
 				str = (Arrays.toString(mapGen[x]) + "\n").replaceAll("\\[", "").replaceAll("\\]", "");
 				writer.write(str);
-
-				//				if(x == mapGen.length)
-				//					writer.write(Arrays.toString(mapGen[x]));
+				
 			}
 			writer.close();
 

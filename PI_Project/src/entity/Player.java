@@ -1,6 +1,5 @@
 package entity;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -25,7 +24,7 @@ public class Player extends Entity{
 		this.keyH = keyH;
 
 		//PLAYER LOCATION ON SCREEN (FIXED)
-		screenX = gp.screenWidth/2;
+		screenX = gp.screenWidth/2 - 20;
 		screenY = gp.screenHeight/2;
 
 		//Collision Area
@@ -67,22 +66,14 @@ public class Player extends Entity{
 	public void update() {
 		if (keyH.upPressed == true ||  keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
 
-			if(keyH.upPressed == true) {
+			if(keyH.upPressed == true)
 				direction = "up";
-				//			worldY -= speed;
-			}
-			else if (keyH.downPressed == true) {
+			else if (keyH.downPressed == true) 
 				direction = "down";
-				//			worldY += speed;
-			}
-			else if (keyH.leftPressed == true) {
+			else if (keyH.leftPressed == true) 
 				direction = "left";
-				//			worldX -= speed;
-			}
-			else if (keyH.rightPressed == true) {
+			else if (keyH.rightPressed == true) 
 				direction = "right";
-				//		 	worldX += speed;
-			}
 
 			// CHECK TILE COLLISION
 			collisionOn = false;
@@ -96,10 +87,24 @@ public class Player extends Entity{
 			if (collisionOn == false) {
 
 				switch(direction) {
-				case "up": worldY -= speed; break;
-				case "down": worldY += speed; break;
-				case "left": worldX -= speed; break;
-				case "right": worldX += speed; break;
+				case "up": 
+					if(worldY > 0) 
+						worldY -= speed;
+					break;
+				case "down":		
+					if(worldY < gp.worldHeight - gp.tileSize)
+						 worldY += speed;
+					break;
+				
+				case "left": 
+					if(worldX > 0)
+						worldX -= speed;
+					break;
+					
+				case "right":
+					if(worldX < gp.worldWidth - 2*gp.tileSize) //TODO
+						worldX += speed;
+					break;
 
 				}
 			}

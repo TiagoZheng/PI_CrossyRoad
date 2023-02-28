@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JPanel;
 
@@ -31,11 +29,13 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int maxWorldCol = 30;
 	public final int maxWorldRow = 30;
 	public final int worldWidth = tileSize * maxWorldCol;
-	public final int worldHight = tileSize * maxWorldRow;
+	public final int worldHeight = tileSize * maxWorldRow;
 
 	//FPS
 	int FPS = 60;
 
+	String path = "res/maps/testnovo5.txt";
+	
 	TileManager tileM = new TileManager(this);
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread;
@@ -74,13 +74,13 @@ public class GamePanel extends JPanel implements Runnable{
 
 		generator.generateArrays();
 		generator.generateWorld();
+		tileM.loadMap(path);
 
 	}
 
 	// BEFORE GAME STARTS (SEE MAIN)
 	public void setupGame() {
 		aSetter.setObject();
-
 	}
 
 	public void startGameThread() {
@@ -120,14 +120,12 @@ public class GamePanel extends JPanel implements Runnable{
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public void update() {
 		player.update();
-		vehicle.update();
-		vehicle2.update();
-
+//		vehicle.update();
+//		vehicle2.update();
 	}
 
 	public void paintComponent(Graphics g) { // GRAPHICS: A class with functions to draw objects on screen
@@ -148,9 +146,8 @@ public class GamePanel extends JPanel implements Runnable{
 
 		// PLAYER
 		player.draw(g2);
-		//		vehicle.draw(g2);
-		//		vehicle2.draw(g2);
-
+		vehicle.draw(g2);
+		vehicle2.draw(g2);
 
 		g2.dispose();
 	}
