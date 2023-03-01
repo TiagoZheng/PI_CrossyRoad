@@ -3,23 +3,30 @@ package main;
 import object.OBJ_Car;
 
 public class AssetSetter {
-	
+
 	GamePanel gp;
-	
+	WorldGenerator wg;
+
 	public AssetSetter(GamePanel gp) {
 		this.gp = gp;
-		
+
 	}
-	
+
 	public void setObject() {
-		
-		gp.obj[0] = new OBJ_Car();
-		gp.obj[0].worldX = 23 * gp.tileSize;
-		gp.obj[0].worldY = 23 * gp.tileSize;
-		
-		gp.obj[1] = new OBJ_Car();
-		gp.obj[1].worldX = 12  * gp.tileSize;
-		gp.obj[1].worldY = 50 * gp.tileSize;
+
+		int count = 0;
+
+		for (int x = 0; x < gp.maxWorldCol; x++) {
+			// if column is road 
+			if(gp.generator.mapGen[0][x] == 1) {
+				//Adds a car
+				gp.obj[count]= new OBJ_Car();
+				gp.obj[count].worldX = x * gp.tileSize;
+				gp.obj[count].worldY = 0 * gp.tileSize;
+				count++;
+			}
+		}
+
 	}
 
 }

@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public Player player = new Player(this, keyH);
 	public CollisionCheck collisionC = new CollisionCheck(this);
 	public AssetSetter aSetter = new AssetSetter(this);
-	public SuperObject obj[] = new SuperObject[10];
+	public SuperObject obj[] = new SuperObject[45];
 	public WorldGenerator generator = new WorldGenerator(this);
 
 	Vehicle vehicle = new Vehicle(this);

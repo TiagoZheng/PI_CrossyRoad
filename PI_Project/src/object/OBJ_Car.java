@@ -17,4 +17,6 @@ public class OBJ_Car extends SuperObject {
 	collision = true;
 	}
 
+	public void update() {
+	}
 }

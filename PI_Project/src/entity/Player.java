@@ -33,9 +33,9 @@ public class Player extends Entity{
 		solidArea.y = 16; 
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultX = solidArea.y;
-				
-		solidArea.width = 32;
-		solidArea.height = 32;
+
+		solidArea.width = 20;
+		solidArea.height = 20;
 
 		setDefaultValue();
 		getPlayerImage();
@@ -46,7 +46,7 @@ public class Player extends Entity{
 		worldX = 2 * gp.tileSize;
 		worldY = 2 * gp.tileSize;
 
-		speed = 4;
+		speed = gp.tileSize;
 		direction = "chicken_right";
 	}
 
@@ -78,7 +78,7 @@ public class Player extends Entity{
 			// CHECK TILE COLLISION
 			collisionOn = false;
 			gp.collisionC.checkTile(this);
-			
+
 			// CHECK OBJECT COLLISION
 			int objIndex = gp.collisionC.checkObject(this, true);
 			pickUpObject(objIndex);
@@ -88,23 +88,31 @@ public class Player extends Entity{
 
 				switch(direction) {
 				case "up": 
-					if(worldY > 0) 
+					if(worldY > 0) {
 						worldY -= speed;
+						keyH.upPressed = false;
+					}
+
 					break;
+
 				case "down":		
-					if(worldY < gp.worldHeight - gp.tileSize)
-						 worldY += speed;
+					if(worldY < gp.worldHeight - gp.tileSize) {
+						worldY += speed;
+						keyH.downPressed = false;
+					}
 					break;
-				
+
 				case "left": 
 					if(worldX > 0) {
 						worldX -= speed;
+						keyH.leftPressed = false;
 					}
 					break;
-					
+
 				case "right":
 					if(worldX < gp.worldWidth - (gp.tileSize + 1*gp.tileSize)) { //TODO
 						worldX += speed;
+						keyH.rightPressed = false;
 					}
 					break;
 
@@ -112,11 +120,11 @@ public class Player extends Entity{
 			}
 		}
 	}
-	
+
 	public void pickUpObject(int i) {
-		
+
 		if (i != 999) {
-			
+
 			// DELETES THE OBJECT WE TOUCH
 			gp.obj[i] = null;
 		}

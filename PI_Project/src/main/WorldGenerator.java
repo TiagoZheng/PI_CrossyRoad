@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
+import object.OBJ_Car;
+
 public class WorldGenerator {
 
 	GamePanel gp;
@@ -47,36 +49,37 @@ public class WorldGenerator {
 			String str = "";
 
 			for (int x = 0; x < gp.maxWorldCol; x++) {
-				System.out.println("this is x: " + x);
 				// if column is grass 
 				if(mapGen[0][x] == 0) {
 
 					Random r = new Random();
 
-					System.out.println("true" + x);
 					//number of trees to add in each column
-					int r1 = r.nextInt(gp.maxWorldRow);
-					System.out.println("r1 number of trees : " + r1);
+					int r1 = r.nextInt((int)(gp.maxWorldRow/1.5));
 					int numTrees = r1;
 
 					while(numTrees > 0) {
 						//adds a tree in random height position
 						int r2 = r.nextInt(gp.maxWorldRow);
-						System.out.println("r2 where: "  + r2);
 						mapGen[r2][x] = 6;
 						numTrees--;
 					}
 
 				} else { // column is a road
-					System.out.println("this is road");
+					
 				}
 			}
+
+			//Takes square brackets out
 			for (int x = 0; x < gp.maxWorldRow; x++) {
 				str = (Arrays.toString(mapGen[x]) + "\n").replaceAll("\\[", "").replaceAll("\\]", "");
 				writer.write(str);
 
 			}
 			writer.close();
+
+
+
 
 		} catch (IOException e) {
 			e.printStackTrace();
