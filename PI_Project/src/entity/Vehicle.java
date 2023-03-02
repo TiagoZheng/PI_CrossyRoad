@@ -3,83 +3,44 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
 
 public class Vehicle extends Entity{
-
-	GamePanel gp;
 	
 	public Vehicle(GamePanel gp) {
-		this.gp = gp;
+		super(gp);
 		
-		setDefaultValue();
-		getImage();
+		direction = "down";
+		speed = 10;
+		getCarImage();
+		
 	}
 
-	public void setDefaultValue() {
-		worldX = 170;
-		worldY = 700;
-		speed = 8;
-		direction = "up";
-	}
-	
-	public void getImage() {
+	public void getCarImage() {
 		try {
-			 vehicle_down = ImageIO.read(getClass().getResourceAsStream("/vehicle/car_down.png"));
-			 vehicle_up = ImageIO.read(getClass().getResourceAsStream("/vehicle/car_up.png"));
-		}
-		catch(IOException e) {
+
+			vehicle_down = ImageIO.read(getClass().getResourceAsStream("/vehicle/car_down.png"));
+			vehicle_up = ImageIO.read(getClass().getResourceAsStream("/vehicle/car_up.png"));
+
+		}catch(IOException e) {
+
 			e.printStackTrace();
 		}
-		
+
 	}
 	
-	public void update() {
+	public void setAction() {
 		
-		if(direction == "up") {
-			worldY -= speed;
-			if(worldY < -60) {
-				worldY = -60;
-				worldX -= 50;
-				direction = "down";
-			}
-		} else if(direction == "down") {
-			worldY += speed;
-			if(worldY > gp.screenHeight) {
-				worldY = gp.screenHeight + 20;
-				worldX += 50;
-				direction = "up";
-			}
-		}
+//		Random random = new Random();
+//		int i = random.nextInt(100)+1; // pick up a number from 1 to 100
+//		
+//		if(i < 100) {
+			direction = "down";
+//		}
 	}
-	
-	public void setX(int x) {
-		this.worldX = x;
 		
-		worldY = -60;
-		direction = "down";
-	}
-	
-	public void draw(Graphics2D g2) {
-//		g2.setColor(Color.WHITE);
-//		g2.fillRect(x, y, gp.tileSize, gp.tileSize);
-		
-		BufferedImage image = null;
-		
-		switch(direction) {
-		case "down":
-			image = vehicle_down;
-			break;
-		case "up":
-			image = vehicle_up;
-			break;
-		}
-		
-		g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
-	}
-	
-	
 }

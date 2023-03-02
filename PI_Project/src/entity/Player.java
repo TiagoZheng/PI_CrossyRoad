@@ -12,15 +12,15 @@ import main.KeyHandler;
 
 public class Player extends Entity{
 
-	GamePanel gp;
 	KeyHandler keyH;
 
 	public final int screenX;
 	public final int screenY;
 
+
 	public Player (GamePanel gp, KeyHandler keyH) {
 
-		this.gp = gp;
+		super(gp); 
 		this.keyH = keyH;
 
 		//PLAYER LOCATION ON SCREEN (FIXED)
@@ -44,7 +44,7 @@ public class Player extends Entity{
 	public void setDefaultValue() {
 		// PLAYER POSITION IN WORLD MAP
 		worldX = 2 * gp.tileSize;
-		worldY = 2 * gp.tileSize;
+		worldY = 7 * gp.tileSize;
 
 		speed = gp.tileSize;
 		direction = "chicken_right";
@@ -121,20 +121,29 @@ public class Player extends Entity{
 		}
 	}
 
+	//When touches anything does something
 	public void pickUpObject(int i) {
 
 		if (i != 999) {
 
-			// DELETES THE OBJECT WE TOUCH
-			gp.obj[i] = null;
+			String objectName = gp.obj[i].name;
+
+			switch(objectName) {
+			case "Car":
+				System.out.println("BUMPED INTO CAR!");
+				//GAME OVER STOPS GAME
+				gp.gameThread = null;
+				
+			case "Coin":
+				gp.obj[i] = null;
+			}
 		}
 	}
 
-	public void draw(Graphics2D g2) {
-		//		g2.setColor(Color.WHITE);
-		//		g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
-		BufferedImage image = null;
+	public void draw(Graphics2D g2) {
+
+		BufferedImage image = chicken_right;
 
 		switch(direction) {
 		case "up":

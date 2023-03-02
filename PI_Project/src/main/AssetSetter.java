@@ -1,5 +1,6 @@
 package main;
 
+import entity.Vehicle;
 import object.OBJ_Car;
 
 public class AssetSetter {
@@ -14,19 +15,29 @@ public class AssetSetter {
 
 	public void setObject() {
 
-		int count = 0;
-
-		for (int x = 0; x < gp.maxWorldCol; x++) {
-			// if column is road 
-			if(gp.generator.mapGen[0][x] == 1) {
-				//Adds a car
-				gp.obj[count]= new OBJ_Car();
-				gp.obj[count].worldX = x * gp.tileSize;
-				gp.obj[count].worldY = 0 * gp.tileSize;
-				count++;
-			}
-		}
 
 	}
 
+	public void setVehicle() {
+		
+//		int count = 0;
+//
+//		for (int x = 0; x < gp.maxWorldCol; x++) {
+//			// if column is road 
+//			if(gp.generator.mapGen[0][x] == 1) {
+//				//Adds a car
+//				gp.vehicle[count]= new Vehicle(gp);
+//				gp.vehicle[count].worldX = x * gp.tileSize;
+//				gp.vehicle[count].worldY = 0 * gp.tileSize;
+//				count++;
+//			}
+//		}
+		
+		gp.vehicle[0] = new Vehicle(gp);
+		gp.vehicle[0].worldX = 2 * gp.tileSize;
+		gp.vehicle[0].worldY = 2 * gp.tileSize;
+		
+		
+	}
+	
 }

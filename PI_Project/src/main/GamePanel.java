@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import entity.Entity;
 import entity.Player;
 import entity.Vehicle;
 import object.SuperObject;
@@ -38,15 +39,18 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	TileManager tileM = new TileManager(this);
 	KeyHandler keyH = new KeyHandler();
-	Thread gameThread;
-	public Player player = new Player(this, keyH);
+	public Thread gameThread;
+	
 	public CollisionCheck collisionC = new CollisionCheck(this);
 	public AssetSetter aSetter = new AssetSetter(this);
+	
+	// ENTITY AND OBJECT
+	public Entity vehicle[] = new Entity[50];
 	public SuperObject obj[] = new SuperObject[45];
+	public Player player = new Player(this, keyH);
+	
 	public WorldGenerator generator = new WorldGenerator(this);
 
-	Vehicle vehicle = new Vehicle(this);
-	Vehicle vehicle2 = new Vehicle(this);
 
 	//Set Player's default Position
 	int playerX = 100;
@@ -67,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable{
 		this.addKeyListener(keyH);
 		this.setFocusable(true); //This GamePanel can be "focused" to receive key input.
 		generateWorld();
-		vehicle2.setX(380);
+//		vehicle2.setX(380);
 	}
 
 	public void generateWorld() {
@@ -81,6 +85,7 @@ public class GamePanel extends JPanel implements Runnable{
 	// BEFORE GAME STARTS (SEE MAIN)
 	public void setupGame() {
 		aSetter.setObject();
+		aSetter.setVehicle();
 	}
 
 	public void startGameThread() {
@@ -124,8 +129,12 @@ public class GamePanel extends JPanel implements Runnable{
 
 	public void update() {
 		player.update();
-//		vehicle.update();
-//		vehicle2.update();
+		
+		for(int i = 0; i <vehicle.length;i++) {
+			if(vehicle[i]!=null) {
+				vehicle[i].update();
+			}
+		}
 	}
 
 	public void paintComponent(Graphics g) { // GRAPHICS: A class with functions to draw objects on screen
@@ -143,11 +152,18 @@ public class GamePanel extends JPanel implements Runnable{
 				obj[i].draw(g2, this);
 			}
 		}
+		
+		//VEHICLE
+		for(int i =0; i < vehicle.length; i++) {
+			if(vehicle[i]!= null) {
+				vehicle[i].draw(g2);
+			}
+		}
 
 		// PLAYER
 		player.draw(g2);
-		vehicle.draw(g2);
-		vehicle2.draw(g2);
+//		vehicle.draw(g2);
+//		vehicle2.draw(g2);
 
 		g2.dispose();
 	}
