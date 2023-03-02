@@ -66,7 +66,7 @@ public class WorldGenerator {
 					}
 
 				} else { // column is a road
-					
+						gp.aSetter.setVehicle(x);
 				}
 			}
 
@@ -77,9 +77,6 @@ public class WorldGenerator {
 
 			}
 			writer.close();
-
-
-
 
 		} catch (IOException e) {
 			e.printStackTrace();

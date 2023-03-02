@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Random;
+
 import entity.Vehicle;
 import object.OBJ_Car;
 
@@ -7,6 +9,8 @@ public class AssetSetter {
 
 	GamePanel gp;
 	WorldGenerator wg;
+	
+	int nVehicles = 0;
 
 	public AssetSetter(GamePanel gp) {
 		this.gp = gp;
@@ -18,7 +22,7 @@ public class AssetSetter {
 
 	}
 
-	public void setVehicle() {
+	public void setVehicle(int position) {
 		
 //		int count = 0;
 //
@@ -32,11 +36,23 @@ public class AssetSetter {
 //				count++;
 //			}
 //		}
+		Random r = new Random();
+		Vehicle v = new Vehicle(gp);
 		
-		gp.vehicle[0] = new Vehicle(gp);
-		gp.vehicle[0].worldX = 2 * gp.tileSize;
-		gp.vehicle[0].worldY = 2 * gp.tileSize;
+		if(r.nextBoolean()) {
+			v.direction = "down";
+			v.worldX = position * gp.tileSize;
+			v.worldY = 2 * gp.tileSize;	
+		} else {
+			v.direction = "up";
+			v.worldX = position * gp.tileSize;
+			v.worldY = gp.maxWorldRow * gp.tileSize;	
+		}
 		
+		v.speed = r.nextInt(10)+1;
+		
+		gp.vehicles[nVehicles] = v;
+		nVehicles++;
 		
 	}
 	

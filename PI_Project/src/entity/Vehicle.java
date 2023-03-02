@@ -1,9 +1,6 @@
 package entity;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -33,14 +30,22 @@ public class Vehicle extends Entity{
 
 	}
 	
-	public void setAction() {
+	public void update() {
+		if(direction == "down") {
+			if(worldY < gp.maxWorldRow*gp.tileSize) {
+				 worldY += speed;
+			} else {
+				worldY = -gp.tileSize;
+			}
+		} else {
+			if(worldY > - gp.tileSize) {
+				 worldY -= speed;
+			} else {
+				worldY = gp.maxWorldRow*gp.tileSize;
+			}
+		}
 		
-//		Random random = new Random();
-//		int i = random.nextInt(100)+1; // pick up a number from 1 to 100
-//		
-//		if(i < 100) {
-			direction = "down";
-//		}
+		
 	}
 		
 }

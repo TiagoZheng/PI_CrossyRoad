@@ -24,7 +24,7 @@ public class Player extends Entity{
 		this.keyH = keyH;
 
 		//PLAYER LOCATION ON SCREEN (FIXED)
-		screenX = gp.screenWidth/2 - 20;
+		screenX = gp.screenWidth/2;
 		screenY = gp.screenHeight/2;
 
 		//Collision Area

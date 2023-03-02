@@ -28,7 +28,7 @@ public class Entity {
 	
 	public void update() {
 		
-		setAction();
+//		setAction();
 		
 		collisionOn= false;
 		gp.collisionC.checkTile(this);

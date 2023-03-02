@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public AssetSetter aSetter = new AssetSetter(this);
 	
 	// ENTITY AND OBJECT
-	public Entity vehicle[] = new Entity[50];
+	public Entity vehicles[] = new Entity[100];
 	public SuperObject obj[] = new SuperObject[45];
 	public Player player = new Player(this, keyH);
 	
@@ -58,9 +58,9 @@ public class GamePanel extends JPanel implements Runnable{
 	int playerSpeed = 16;
 
 	// Set Vehicle's default Position
-	int vehicleX = 200;
-	int vehicleY = 700;
-	int vehicleSpeed = 16;
+//	int vehicleX = 200;
+//	int vehicleY = 700;
+//	int vehicleSpeed = 16;
 
 
 
@@ -85,7 +85,7 @@ public class GamePanel extends JPanel implements Runnable{
 	// BEFORE GAME STARTS (SEE MAIN)
 	public void setupGame() {
 		aSetter.setObject();
-		aSetter.setVehicle();
+//		aSetter.setVehicle();
 	}
 
 	public void startGameThread() {
@@ -130,9 +130,9 @@ public class GamePanel extends JPanel implements Runnable{
 	public void update() {
 		player.update();
 		
-		for(int i = 0; i <vehicle.length;i++) {
-			if(vehicle[i]!=null) {
-				vehicle[i].update();
+		for(int i = 0; i <vehicles.length;i++) {
+			if(vehicles[i]!=null) {
+				vehicles[i].update();
 			}
 		}
 	}
@@ -154,9 +154,9 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 		
 		//VEHICLE
-		for(int i =0; i < vehicle.length; i++) {
-			if(vehicle[i]!= null) {
-				vehicle[i].draw(g2);
+		for(int i =0; i < vehicles.length; i++) {
+			if(vehicles[i]!= null) {
+				vehicles[i].draw(g2);
 			}
 		}
 
