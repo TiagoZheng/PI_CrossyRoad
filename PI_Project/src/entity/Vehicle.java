@@ -1,5 +1,7 @@
 package entity;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -7,14 +9,15 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 
 public class Vehicle extends Entity{
-	
+
+
 	public Vehicle(GamePanel gp) {
 		super(gp);
-		
+
 		direction = "down";
 		speed = 10;
 		getCarImage();
-		
+
 	}
 
 	public void getCarImage() {
@@ -27,25 +30,24 @@ public class Vehicle extends Entity{
 
 			e.printStackTrace();
 		}
-
 	}
-	
-	public void update() {
+
+	public void setAction() {
+
 		if(direction == "down") {
 			if(worldY < gp.maxWorldRow*gp.tileSize) {
-				 worldY += speed;
+				worldY += speed;
 			} else {
 				worldY = -gp.tileSize;
 			}
 		} else {
 			if(worldY > - gp.tileSize) {
-				 worldY -= speed;
+				worldY -= speed;
 			} else {
 				worldY = gp.maxWorldRow*gp.tileSize;
 			}
 		}
-		
-		
+
 	}
-		
+
 }

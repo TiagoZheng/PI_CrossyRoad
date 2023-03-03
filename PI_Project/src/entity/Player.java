@@ -46,7 +46,8 @@ public class Player extends Entity{
 		worldX = 2 * gp.tileSize;
 		worldY = 7 * gp.tileSize;
 
-		speed = gp.tileSize;
+//		speed = gp.tileSize;
+		speed = 4;
 		direction = "chicken_right";
 	}
 
@@ -82,7 +83,11 @@ public class Player extends Entity{
 			// CHECK OBJECT COLLISION
 			int objIndex = gp.collisionC.checkObject(this, true);
 			pickUpObject(objIndex);
-
+			
+			//CHECK VIHECLE COLLISION
+			int vehicleIndex = gp.collisionC.checkEntity(this, gp.vehicles);
+			interactVehicle (vehicleIndex);
+			
 			// IF COLLISION IS FALSE, PLAYER CAN MOVE
 			if (collisionOn == false) {
 
@@ -90,7 +95,7 @@ public class Player extends Entity{
 				case "up": 
 					if(worldY > 0) {
 						worldY -= speed;
-						keyH.upPressed = false;
+//						keyH.upPressed = false;
 					}
 
 					break;
@@ -98,21 +103,21 @@ public class Player extends Entity{
 				case "down":		
 					if(worldY < gp.worldHeight - gp.tileSize) {
 						worldY += speed;
-						keyH.downPressed = false;
+//						keyH.downPressed = false;
 					}
 					break;
 
 				case "left": 
 					if(worldX > 0) {
 						worldX -= speed;
-						keyH.leftPressed = false;
+//						keyH.leftPressed = false;
 					}
 					break;
 
 				case "right":
 					if(worldX < gp.worldWidth - (gp.tileSize + 1*gp.tileSize)) { //TODO
 						worldX += speed;
-						keyH.rightPressed = false;
+//						keyH.rightPressed = false;
 					}
 					break;
 
@@ -130,7 +135,6 @@ public class Player extends Entity{
 
 			switch(objectName) {
 			case "Car":
-				System.out.println("BUMPED INTO CAR!");
 				//GAME OVER STOPS GAME
 				gp.gameThread = null;
 				
@@ -141,6 +145,14 @@ public class Player extends Entity{
 	}
 
 
+	public void interactVehicle(int i ) {
+		if (i != 999) {
+			//PLAYER COLLISION ONTO CAR GAME OVER!
+			System.out.println("GAME OVER!");
+			gp.gameThread=null;
+		}
+	}
+	
 	public void draw(Graphics2D g2) {
 
 		BufferedImage image = chicken_right;

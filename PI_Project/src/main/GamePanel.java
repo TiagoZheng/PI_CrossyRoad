@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public SuperObject obj[] = new SuperObject[45];
 	public Player player = new Player(this, keyH);
 	
+	
 	public WorldGenerator generator = new WorldGenerator(this);
 
 
@@ -80,7 +81,7 @@ public class GamePanel extends JPanel implements Runnable{
 	// BEFORE GAME STARTS (SEE MAIN)
 	public void setupGame() {
 		aSetter.setObject();
-//		aSetter.setVehicle();
+//		aSetter.setCar();
 		aSetter.setVehicles();
 	}
 
