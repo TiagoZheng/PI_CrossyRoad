@@ -11,6 +11,8 @@ public class AssetSetter {
 	WorldGenerator wg;
 	
 	int nVehicles = 0;
+	
+	int speedtest = 1;
 
 	public AssetSetter(GamePanel gp) {
 		this.gp = gp;
@@ -21,6 +23,8 @@ public class AssetSetter {
 
 
 	}
+	
+	
 
 	public void setVehicle(int position) {
 		
@@ -36,6 +40,9 @@ public class AssetSetter {
 //				count++;
 //			}
 //		}
+		
+		
+		
 		Random r = new Random();
 		Vehicle v = new Vehicle(gp);
 		
@@ -49,10 +56,21 @@ public class AssetSetter {
 			v.worldY = gp.maxWorldRow * gp.tileSize;	
 		}
 		
-		v.speed = r.nextInt(10)+1;
+//		v.speed = r.nextInt(10)+1;
+		v.speed = speedtest;
+		speedtest++;
 		
 		gp.vehicles[nVehicles] = v;
 		nVehicles++;
+		
+	}
+
+	public void setVehicles() {
+		for (int x = 0; x < gp.maxWorldCol; x++) {
+			if(gp.generator.mapGen[0][x] == 1) {
+				setVehicle(x);
+			}
+		}
 		
 	}
 	

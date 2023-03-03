@@ -57,10 +57,6 @@ public class GamePanel extends JPanel implements Runnable{
 	int playerY = 100;
 	int playerSpeed = 16;
 
-	// Set Vehicle's default Position
-//	int vehicleX = 200;
-//	int vehicleY = 700;
-//	int vehicleSpeed = 16;
 
 
 
@@ -71,7 +67,6 @@ public class GamePanel extends JPanel implements Runnable{
 		this.addKeyListener(keyH);
 		this.setFocusable(true); //This GamePanel can be "focused" to receive key input.
 		generateWorld();
-//		vehicle2.setX(380);
 	}
 
 	public void generateWorld() {
@@ -86,6 +81,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public void setupGame() {
 		aSetter.setObject();
 //		aSetter.setVehicle();
+		aSetter.setVehicles();
 	}
 
 	public void startGameThread() {
@@ -147,11 +143,11 @@ public class GamePanel extends JPanel implements Runnable{
 		tileM.draw(g2);
 
 		// OBJECT
-		for (int i = 0; i < obj.length; i++) { 
-			if(obj[i] != null) {
-				obj[i].draw(g2, this);
-			}
-		}
+//		for (int i = 0; i < obj.length; i++) { 
+//			if(obj[i] != null) {
+//				obj[i].draw(g2, this);
+//			}
+//		}
 		
 		//VEHICLE
 		for(int i =0; i < vehicles.length; i++) {
@@ -162,8 +158,6 @@ public class GamePanel extends JPanel implements Runnable{
 
 		// PLAYER
 		player.draw(g2);
-//		vehicle.draw(g2);
-//		vehicle2.draw(g2);
 
 		g2.dispose();
 	}

@@ -65,8 +65,8 @@ public class WorldGenerator {
 						numTrees--;
 					}
 
-				} else { // column is a road
-						gp.aSetter.setVehicle(x);
+				} else if(mapGen[0][x] == 1) { // column is a road
+//					gp.aSetter.setVehicle(x);
 				}
 			}
 
