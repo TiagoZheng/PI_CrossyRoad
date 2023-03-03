@@ -3,7 +3,6 @@ package main;
 import java.util.Random;
 
 import entity.Vehicle;
-import object.OBJ_Car;
 
 public class AssetSetter {
 
@@ -24,35 +23,44 @@ public class AssetSetter {
 	}
 	
 	public void setVehicle(int position) {
+
+//		int count = 0;
+//
+//		for (int x = 0; x < gp.maxWorldCol; x++) {
+//			// if column is road 
+//			if(gp.generator.mapGen[0][x] == 1) {
+//				//Adds a car
+//				gp.vehicle[count]= new Vehicle(gp);
+//				gp.vehicle[count].worldX = x * gp.tileSize;
+//				gp.vehicle[count].worldY = 0 * gp.tileSize;
+//				count++;
+//			}
+//		}
 		
 		Random r = new Random();
-		Vehicle v = new Vehicle(gp);
+		Vehicle v = new Vehicle(gp, "Car");
+		v.worldX = position * gp.tileSize;
 		
 		if(r.nextBoolean()) {
 			v.direction = "down";
-			v.worldX = position * gp.tileSize;
 			v.worldY = 2 * gp.tileSize;	
 		} else {
 			v.direction = "up";
-			v.worldX = position * gp.tileSize;
 			v.worldY = gp.maxWorldRow * gp.tileSize;	
 		}
 		
-		v.speed = r.nextInt(5)+1;
-//		v.speed = speedtest;
-//		speedtest++;
+//		v.speed = r.nextInt(5)+1;
+		v.speed = speedtest;
+		speedtest++;
 		
 		gp.vehicles[nVehicles] = v;
 		nVehicles++;
 	}
 
 	public void setVehicles() {
-		for (int x = 0; x < gp.maxWorldCol; x++) {
-			if(gp.generator.mapGen[0][x] == 1) {
-				setVehicle(x);
-			}
-		}
-		
+		for (int x = 0; x < gp.maxWorldCol; x++)
+			if(gp.generator.mapGen[0][x] == 1)
+				setVehicle(x);	
 	}
 	
 }

@@ -23,17 +23,16 @@ public class Entity {
 	public Entity(GamePanel gp) { 
 		this.gp= gp;
 	}
-
+	
 	public void setAction() {}
+	
 	public void update() {
-
-		setAction();
-
+		
+//		setAction();
+		
 		collisionOn= false;
-//		gp.collisionC.checkTile(this);
-		gp.collisionC.checkObject(this, false);
-		gp.collisionC.checkPlayer(this);
-
+		gp.collisionC.checkTile(this);
+		
 		// IF COLLISION IS FALSE, PLAYER CAN MOVE
 		if (collisionOn == false) {
 
@@ -43,10 +42,11 @@ public class Entity {
 			case "left": worldX -= speed; break;
 			case "right": worldX += speed; break;
 			}
-
+			
 		}
+	
 	}
-
+	
 	public void draw(Graphics2D g2) {
 
 		BufferedImage image = null;

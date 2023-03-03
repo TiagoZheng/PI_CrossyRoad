@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
-import object.OBJ_Car;
 
 public class WorldGenerator {
 
@@ -64,10 +63,7 @@ public class WorldGenerator {
 						mapGen[r2][x] = 6;
 						numTrees--;
 					}
-
-				} else if(mapGen[0][x] == 1) { // column is a road
-//					gp.aSetter.setVehicle(x);
-				}
+				} 
 			}
 
 			//Takes square brackets out

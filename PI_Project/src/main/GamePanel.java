@@ -22,13 +22,13 @@ public class GamePanel extends JPanel implements Runnable{
 
 	public final int tileSize = originalTileSize * scale; // 48x48 tile
 	public final int maxScreenCol = 16;
-	public final int maxScreenRow = 12;
+	public final int maxScreenRow = 16;
 	public final int screenWidth = tileSize * maxScreenCol; // 768 pixel
 	public final int screenHeight = tileSize * maxScreenRow; // 576 pixel
 
 	//WORLD SETTINGS
-	public final int maxWorldCol = 60;
-	public final int maxWorldRow = 15;
+	public final int maxWorldCol = 100;
+	public final int maxWorldRow = 30;
 	public final int worldWidth = tileSize * maxWorldCol;
 	public final int worldHeight = tileSize * maxWorldRow;
 
@@ -57,9 +57,7 @@ public class GamePanel extends JPanel implements Runnable{
 	int playerX = 100;
 	int playerY = 100;
 	int playerSpeed = 16;
-
-
-
+	
 
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -71,11 +69,9 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 
 	public void generateWorld() {
-
 		generator.generateArrays();
 		generator.generateWorld();
 		tileM.loadMap(path);
-
 	}
 
 	// BEFORE GAME STARTS (SEE MAIN)
@@ -92,33 +88,23 @@ public class GamePanel extends JPanel implements Runnable{
 
 	@Override
 	public void run() {
-
 		double drawInterval = 1000000000/FPS; // 0.0166666 seconds
 		double nextDrawTime = System.nanoTime() + drawInterval;
-
 		while (gameThread != null) {
-
 			// 1 UPDATE: update information such as character positions
 			update();
-
 			// 2 DRAW: draw on the screen with the updated information 
 			repaint(); //is the paintComponent
-
 			try {
-
 				double remainingTime = nextDrawTime - System.nanoTime();
 				remainingTime = remainingTime/1000000;
 
-				if(remainingTime < 0 ) {
+				if(remainingTime < 0 )
 					remainingTime = 0;
-				}
 
 				Thread.sleep((long) remainingTime);
-
 				nextDrawTime += drawInterval;
-
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -126,12 +112,9 @@ public class GamePanel extends JPanel implements Runnable{
 
 	public void update() {
 		player.update();
-		
-		for(int i = 0; i <vehicles.length;i++) {
-			if(vehicles[i]!=null) {
+		for(int i = 0; i <vehicles.length;i++)
+			if(vehicles[i]!=null)
 				vehicles[i].update();
-			}
-		}
 	}
 
 	public void paintComponent(Graphics g) { // GRAPHICS: A class with functions to draw objects on screen

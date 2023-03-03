@@ -16,24 +16,50 @@ public class Vehicle extends Entity{
 
 		direction = "down";
 		speed = 10;
-		getCarImage();
+		getVehicleImage();
+
+	}
+	
+	String type;
+	
+	public Vehicle(GamePanel gp, String type) {
+		super(gp);
+		
+		this.type = type;
+		
+		direction = "down";
+		speed = 10;
+		getVehicleImage();
+		
 
 	}
 
-	public void getCarImage() {
+	public void getVehicleImage() {
 		try {
-
-			vehicle_down = ImageIO.read(getClass().getResourceAsStream("/vehicle/car_down.png"));
-			vehicle_up = ImageIO.read(getClass().getResourceAsStream("/vehicle/car_up.png"));
+			switch(type) {
+			case "Car":
+				vehicle_down = ImageIO.read(getClass().getResourceAsStream("/vehicle/car_down.png"));
+				vehicle_up = ImageIO.read(getClass().getResourceAsStream("/vehicle/car_up.png"));
+				break;
+			case "Bus": 
+				vehicle_down = ImageIO.read(getClass().getResourceAsStream("/vehicle/bus.png"));
+				vehicle_up = ImageIO.read(getClass().getResourceAsStream("/vehicle/bus.png"));
+				break;
+			}
 
 		}catch(IOException e) {
-
 			e.printStackTrace();
 		}
 	}
 
-	public void setAction() {
 
+	
+	public void update() {
+		
+//		collisionOn= false;
+//		gp.collisionC.checkTile(this);
+		
+		
 		if(direction == "down") {
 			if(worldY < gp.maxWorldRow*gp.tileSize) {
 				worldY += speed;

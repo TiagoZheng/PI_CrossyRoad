@@ -46,8 +46,10 @@ public class Player extends Entity{
 		worldX = 2 * gp.tileSize;
 		worldY = 7 * gp.tileSize;
 
+
 //		speed = gp.tileSize;
 		speed = 4;
+		
 		direction = "chicken_right";
 	}
 
@@ -115,7 +117,7 @@ public class Player extends Entity{
 					break;
 
 				case "right":
-					if(worldX < gp.worldWidth - (gp.tileSize + 1*gp.tileSize)) { //TODO
+					if(worldX < gp.worldWidth - 2*gp.tileSize) { //TODO
 						worldX += speed;
 //						keyH.rightPressed = false;
 					}
@@ -159,7 +161,7 @@ public class Player extends Entity{
 
 		switch(direction) {
 		case "up":
-			image = chicken_left;
+			image = chicken_right;
 			break;
 		case "down":
 			image = chicken_right;
