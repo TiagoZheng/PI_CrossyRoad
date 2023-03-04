@@ -56,8 +56,8 @@ public class Vehicle extends Entity{
 	
 	public void update() {
 		
-//		collisionOn= false;
-//		gp.collisionC.checkTile(this);
+		collisionOn= false;
+		gp.collisionC.checkPlayer(this);
 		
 		
 		if(direction == "down") {

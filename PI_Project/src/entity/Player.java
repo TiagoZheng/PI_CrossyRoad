@@ -47,8 +47,8 @@ public class Player extends Entity{
 		worldY = 7 * gp.tileSize;
 
 
-//		speed = gp.tileSize;
-		speed = 4;
+		speed = gp.tileSize;
+//		speed = 4;
 		
 		direction = "chicken_right";
 	}
@@ -69,6 +69,7 @@ public class Player extends Entity{
 	public void update() {
 		if (keyH.upPressed == true ||  keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
 
+			
 			if(keyH.upPressed == true)
 				direction = "up";
 			else if (keyH.downPressed == true) 
@@ -92,12 +93,12 @@ public class Player extends Entity{
 			
 			// IF COLLISION IS FALSE, PLAYER CAN MOVE
 			if (collisionOn == false) {
-
+				
 				switch(direction) {
 				case "up": 
 					if(worldY > 0) {
 						worldY -= speed;
-//						keyH.upPressed = false;
+						keyH.upPressed = false;
 					}
 
 					break;
@@ -105,21 +106,21 @@ public class Player extends Entity{
 				case "down":		
 					if(worldY < gp.worldHeight - gp.tileSize) {
 						worldY += speed;
-//						keyH.downPressed = false;
+						keyH.downPressed = false;
 					}
 					break;
 
 				case "left": 
 					if(worldX > 0) {
 						worldX -= speed;
-//						keyH.leftPressed = false;
+						keyH.leftPressed = false;
 					}
 					break;
 
 				case "right":
 					if(worldX < gp.worldWidth - 2*gp.tileSize) { //TODO
 						worldX += speed;
-//						keyH.rightPressed = false;
+						keyH.rightPressed = false;
 					}
 					break;
 
@@ -149,9 +150,12 @@ public class Player extends Entity{
 
 	public void interactVehicle(int i ) {
 		if (i != 999) {
+			
 			//PLAYER COLLISION ONTO CAR GAME OVER!
-			System.out.println("GAME OVER!");
-			gp.gameThread=null;
+//			System.out.println("GAME OVER!");
+//			gp.gameThread=null;
+			
+			gp.vehicles[i]=null;
 		}
 	}
 	
