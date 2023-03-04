@@ -3,6 +3,7 @@ package main;
 import java.util.Random;
 
 import entity.Vehicle;
+import object.OBJ_Coin;
 
 public class AssetSetter {
 
@@ -19,7 +20,10 @@ public class AssetSetter {
 
 	public void setObject() {
 
-
+		gp.obj[0] = new OBJ_Coin();
+		gp.obj[0].worldX = 3 * gp.tileSize;
+		gp.obj[0].worldY = 7 * gp.tileSize;
+		
 	}
 	
 	public void setVehicle(int position) {
