@@ -12,7 +12,7 @@ public class Entity {
 	public int worldX, worldY;
 	public int speed;
 
-	public BufferedImage chicken_right, chicken_left, vehicle_down, vehicle_up;
+	public BufferedImage chicken_right, chicken_left, vehicle_down, vehicle_up, game_over;
 	public String direction;
 
 	//For Collision
@@ -67,7 +67,9 @@ public class Entity {
 			case "down":
 				image = vehicle_down;
 				break;
-
+			case "game_over":
+				image = game_over;
+				break;
 			}
 
 			g2.drawImage(image ,screenX, screenY, gp.tileSize, gp.tileSize, null);

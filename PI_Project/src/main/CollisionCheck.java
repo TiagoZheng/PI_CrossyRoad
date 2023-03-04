@@ -225,7 +225,9 @@ public class CollisionCheck {
 			entity.solidArea.y -= entity.speed;
 			if(entity.solidArea.intersects(gp.player.solidArea)) {
 				entity.collisionOn = true;
+				
 				//CAR COLLISION ONTO PLAYER
+				gp.player.direction="game_over";
 				System.out.println("GAME OVER!");
 				gp.gameThread= null;
 			}
@@ -235,7 +237,9 @@ public class CollisionCheck {
 			entity.solidArea.y += entity.speed;
 			if(entity.solidArea.intersects(gp.player.solidArea)) {
 				entity.collisionOn = true;
+				
 				//CAR COLLISION ONTO PLAYER
+				gp.player.direction="game_over";
 				System.out.println("GAME OVER!");
 				gp.gameThread=null;
 			}

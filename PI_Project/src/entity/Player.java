@@ -58,6 +58,7 @@ public class Player extends Entity{
 
 			chicken_right = ImageIO.read(getClass().getResourceAsStream("/player/chicken_right.png"));
 			chicken_left = ImageIO.read(getClass().getResourceAsStream("/player/chicken_left.png"));
+			game_over = ImageIO.read(getClass().getResourceAsStream("/player/game_over.png"));
 
 		}catch(IOException e) {
 
@@ -152,10 +153,11 @@ public class Player extends Entity{
 		if (i != 999) {
 			
 			//PLAYER COLLISION ONTO CAR GAME OVER!
-//			System.out.println("GAME OVER!");
-//			gp.gameThread=null;
+			System.out.println("GAME OVER!");
+			direction = "game_over";
+			gp.gameThread=null;
 			
-			gp.vehicles[i]=null;
+//			gp.vehicles[i]=null;
 		}
 	}
 	
@@ -176,7 +178,11 @@ public class Player extends Entity{
 		case "right":
 			image = chicken_right;
 			break;
+		case "game_over":
+			image = game_over;
+			break;
 		}
+
 
 		g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 	}
