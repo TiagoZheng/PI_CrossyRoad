@@ -11,7 +11,6 @@ public class OBJ_Coin extends SuperObject {
 		try {	
 			coin = ImageIO.read(getClass().getResourceAsStream("/object/coin.png"));
 			coin1 = ImageIO.read(getClass().getResourceAsStream("/object/coin1.png"));
-			
 		}catch(IOException e) {
 			e.printStackTrace();
 		}

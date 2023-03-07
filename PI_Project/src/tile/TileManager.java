@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -22,6 +23,7 @@ public class TileManager {
 		tile = new Tile[10];
 		mapTileNum = new int [gp.maxWorldCol][gp.maxWorldRow];
 
+		
 		getTileImage();
 //		loadMap("res/maps/testnovo4.txt");
 		
@@ -29,20 +31,21 @@ public class TileManager {
 
 	public void getTileImage() {
 
+		int i = 0;
 		try {
 
-			tile[0] = new Tile();
-			tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass.png"));
-
-//			tile[1] = new Tile();
-//			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/road2.png"));
+			tile[i] = new Tile();
+			tile[i].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass.png"));
+			i++;
 			
-			tile[1] = new Tile();
-			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/lane.png"));
-
-			tile[2] = new Tile();
-			tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/firstLane.png"));
-
+			tile[i] = new Tile();
+			tile[i].image = ImageIO.read(getClass().getResourceAsStream("/tiles/lane.png"));
+			i++;
+			
+			tile[i] = new Tile();
+			tile[i].image = ImageIO.read(getClass().getResourceAsStream("/tiles/firstLane.png"));
+			i++;
+			
 			tile[3] = new Tile();
 			tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/lane.png"));
 
@@ -53,8 +56,21 @@ public class TileManager {
 			tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/singleLane.png"));
 
 			tile[6] = new Tile();
-			tile[6].image = ImageIO.read(getClass().getResourceAsStream("/tiles/AppleTree.png"));
+			Random r = new Random();
+			tile[6].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree" + (r.nextInt(4)+1) + ".png"));
 			tile[6].collision = true;
+			
+			tile[7] = new Tile();
+			tile[7].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree2.png"));
+			tile[7].collision = true;
+			
+			tile[8] = new Tile();
+			tile[8].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree3.png"));
+			tile[8].collision = true;
+			
+			tile[9] = new Tile();
+			tile[9].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree4.png"));
+			tile[9].collision = true;
 
 
 		} catch (IOException e) {

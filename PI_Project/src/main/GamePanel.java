@@ -46,7 +46,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	// ENTITY AND OBJECT
 	public Entity vehicles[] = new Entity[100];
-	public SuperObject obj[] = new SuperObject[45];
+	public SuperObject obj[] = new SuperObject[100];
 	public Player player = new Player(this, keyH);
 	
 	
@@ -77,8 +77,9 @@ public class GamePanel extends JPanel implements Runnable{
 	// BEFORE GAME STARTS (SEE MAIN)
 	public void setupGame() {
 		aSetter.setObject();
-//		aSetter.setCar();
+		aSetter.setCoins();
 		aSetter.setVehicles();
+		
 	}
 
 	public void startGameThread() {

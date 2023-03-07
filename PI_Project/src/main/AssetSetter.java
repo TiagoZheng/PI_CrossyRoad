@@ -10,6 +10,7 @@ public class AssetSetter {
 	GamePanel gp;
 	WorldGenerator wg;
 	
+	int nCoins = 0;
 	int nVehicles = 0;
 	int speedtest = 1;
 
@@ -26,23 +27,26 @@ public class AssetSetter {
 		
 	}
 	
+	public void setCoin(int position) {
+		Random r = new Random();
+		
+		OBJ_Coin coin = new OBJ_Coin();
+		coin.worldX = position * gp.tileSize;
+		coin.worldY = r.nextInt(gp.maxWorldRow)*gp.tileSize;
+		gp.obj[nCoins] = coin;
+		nCoins++;
+	}
+	
+	public void setCoins() {
+		for (int x = 0; x < gp.maxWorldCol; x++)
+			if(gp.generator.mapGen[0][x] == 1)
+				setCoin(x);
+	}
+	
 	public void setVehicle(int position) {
-
-//		int count = 0;
-//
-//		for (int x = 0; x < gp.maxWorldCol; x++) {
-//			// if column is road 
-//			if(gp.generator.mapGen[0][x] == 1) {
-//				//Adds a car
-//				gp.vehicle[count]= new Vehicle(gp);
-//				gp.vehicle[count].worldX = x * gp.tileSize;
-//				gp.vehicle[count].worldY = 0 * gp.tileSize;
-//				count++;
-//			}
-//		}
 		
 		Random r = new Random();
-		Vehicle v = new Vehicle(gp, "Car");
+		Vehicle v = new Vehicle(gp);
 		v.worldX = position * gp.tileSize;
 		
 		if(r.nextBoolean()) {
